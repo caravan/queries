@@ -7,9 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestExpression(t *testing.T) {
+func TestIdentifier(t *testing.T) {
 	as := assert.New(t)
-
 	i := &ast.Identifier{}
 	e := ast.Expression(i)
 	as.NotNil(e)
