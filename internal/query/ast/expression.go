@@ -17,4 +17,4 @@ type (
 )
 
 // Expression marks an Identifier as an Expression node
-func (Identifier) Expression() {}
+func (*Identifier) Expression() {}

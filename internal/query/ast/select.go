@@ -32,4 +32,4 @@ type (
 )
 
 // Statement marks SelectStatement as a Statement
-func (SelectStatement) Statement() {}
+func (*SelectStatement) Statement() {}
