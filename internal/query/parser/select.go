@@ -53,12 +53,10 @@ func (r *parser) columnSelectors(
 func (r *parser) columnSelectorsRest(
 	res ast.ColumnSelectors,
 ) (ast.ColumnSelectors, error) {
-	r.pushState()
-	if !r.nextToken().IsA(lexer.Comma) {
-		r.popState()
-		return res, nil
+	if r.commaSeparated() {
+		return r.columnSelectors(res)
 	}
-	return r.columnSelectors(res)
+	return res, nil
 }
 
 func (r *parser) columnSelector() (*ast.ColumnSelector, error) {
@@ -102,12 +100,10 @@ func (r *parser) sourceSelectors(
 func (r *parser) sourceSelectorsRest(
 	res ast.SourceSelectors,
 ) (ast.SourceSelectors, error) {
-	r.pushState()
-	if !r.nextToken().IsA(lexer.Comma) {
-		r.popState()
-		return res, nil
+	if r.commaSeparated() {
+		return r.sourceSelectors(res)
 	}
-	return r.sourceSelectors(res)
+	return res, nil
 }
 
 func (r *parser) sourceSelector() (*ast.SourceSelector, error) {
@@ -161,4 +157,13 @@ func (r *parser) reserved(word string) (*lexer.Token, bool) {
 	}
 	r.popState()
 	return nil, false
+}
+
+func (r *parser) commaSeparated() bool {
+	r.pushState()
+	if r.nextToken().IsA(lexer.Comma) {
+		return true
+	}
+	r.popState()
+	return false
 }
