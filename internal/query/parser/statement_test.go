@@ -1,7 +1,6 @@
 package parser_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/caravan/queries/internal/query/lexer"
@@ -74,7 +73,7 @@ func TestParsableStatementsErrors(t *testing.T) {
 
 	testStatementsError(t,
 		"select this from that as 99;",
-		fmt.Sprintf(parser.ErrExpectedAlias, lexer.Integer),
+		parser.ErrExpectedIdentifier,
 	)
 
 	testStatementsError(t,

@@ -15,7 +15,7 @@ func (r *parser) Expression() (ast.Expression, error) {
 	if res, err := r.expression(); res != nil || err != nil {
 		return res, err
 	}
-	return nil, r.error(ErrExpectedExpression)
+	return nil, r.expected(ErrExpectedExpression)
 }
 
 func (r *parser) expression() (ast.Expression, error) {
@@ -31,7 +31,7 @@ func (r *parser) Identifier() (*ast.Identifier, error) {
 	if res != nil || err != nil {
 		return res, err
 	}
-	return nil, r.error(ErrExpectedIdentifier)
+	return nil, r.expected(ErrExpectedIdentifier)
 }
 
 func (r *parser) identifier() (*ast.Identifier, error) {

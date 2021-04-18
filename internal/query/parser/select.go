@@ -8,16 +8,12 @@ import (
 
 // Error message
 const (
-	ErrExpectedAlias      = "expected alias, got %s"
 	ErrExpectedIdentifier = "expected identifier"
 )
 
 func (r *parser) selectStatement() (*ast.SelectStatement, error) {
-	r.pushState()
-	t := r.nextToken()
-
-	if !isReserved(t, reserved.SELECT) {
-		r.popState()
+	t, ok := r.reserved(reserved.SELECT)
+	if !ok {
 		return nil, nil
 	}
 
@@ -77,8 +73,8 @@ func (r *parser) columnSelector() (*ast.ColumnSelector, error) {
 		Name:       "",
 	}
 
-	if alias, err := r.selectorAlias(); alias != "" && err == nil {
-		res.Name = alias
+	if alias, err := r.selectorAlias(); alias != nil && err == nil {
+		res.Name = alias.Name
 	} else if id, ok := exp.(*ast.Identifier); ok {
 		res.Name = id.Name
 	}
@@ -87,13 +83,10 @@ func (r *parser) columnSelector() (*ast.ColumnSelector, error) {
 }
 
 func (r *parser) optionalSourceSelectors() (ast.SourceSelectors, error) {
-	res := ast.SourceSelectors{}
-	r.pushState()
-	if !isReserved(r.nextToken(), reserved.FROM) {
-		r.popState()
-		return res, nil
+	if _, ok := r.reserved(reserved.FROM); !ok {
+		return nil, nil
 	}
-	return r.sourceSelectors(res)
+	return r.sourceSelectors(ast.SourceSelectors{})
 }
 
 func (r *parser) sourceSelectors(
@@ -129,8 +122,8 @@ func (r *parser) sourceSelector() (*ast.SourceSelector, error) {
 		Source:  id.Name,
 	}
 
-	if alias, err := r.selectorAlias(); alias != "" && err == nil {
-		res.Name = alias
+	if alias, err := r.selectorAlias(); alias != nil && err == nil {
+		res.Name = alias.Name
 	} else if err != nil {
 		return nil, err
 	}
@@ -138,28 +131,15 @@ func (r *parser) sourceSelector() (*ast.SourceSelector, error) {
 	return res, nil
 }
 
-func (r *parser) selectorAlias() (string, error) {
-	r.pushState()
-	t := r.nextToken()
-	switch {
-	case isReserved(t, reserved.AS):
-		t = r.nextToken()
-		if t.IsA(lexer.Identifier) {
-			return t.Value().(string), nil
-		}
-		return "", r.errorf(ErrExpectedAlias, t.Type())
-	case t.IsA(lexer.Identifier):
-		return t.Value().(string), nil
-	default:
-		r.popState()
-		return "", nil
+func (r *parser) selectorAlias() (*ast.Identifier, error) {
+	if _, ok := r.reserved(reserved.AS); ok {
+		return r.Identifier()
 	}
+	return r.identifier()
 }
 
 func (r *parser) optionalCondition() (*ast.SelectCondition, error) {
-	r.pushState()
-	if !isReserved(r.nextToken(), reserved.WHERE) {
-		r.popState()
+	if _, ok := r.reserved(reserved.WHERE); !ok {
 		return nil, nil
 	}
 
@@ -171,4 +151,14 @@ func (r *parser) optionalCondition() (*ast.SelectCondition, error) {
 		Located:    e,
 		Expression: e,
 	}, nil
+}
+
+func (r *parser) reserved(word string) (*lexer.Token, bool) {
+	r.pushState()
+	t := r.nextToken()
+	if isReserved(t, word) {
+		return t, true
+	}
+	r.popState()
+	return nil, false
 }

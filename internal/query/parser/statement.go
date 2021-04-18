@@ -9,7 +9,7 @@ func (r *parser) Statement() (ast.Statement, error) {
 	if res, err := r.statement(); res != nil || err != nil {
 		return res, err
 	}
-	return nil, r.error(ErrExpectedStatement)
+	return nil, r.expected(ErrExpectedStatement)
 }
 
 func (r *parser) Statements() (ast.Statements, error) {
@@ -38,7 +38,7 @@ func (r *parser) nonStatement() error {
 			return nil
 		default:
 			r.popState()
-			return r.error(ErrExpectedStatement)
+			return r.expected(ErrExpectedStatement)
 		}
 	}
 }

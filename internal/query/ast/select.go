@@ -25,6 +25,7 @@ type (
 		Name   string
 	}
 
+	// SelectCondition represents a SQL select condition (WHERE)
 	SelectCondition struct {
 		lexer.Located
 		Expression // will be a BooleanExpression

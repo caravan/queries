@@ -32,6 +32,8 @@ type (
 // Error messages
 const (
 	ErrExpectedStatement = "expected statement"
+
+	ErrExpectedWrapper = "%s, got %s"
 )
 
 // Parse creates a new SQL Parser using the provided lexer.Sequence
@@ -66,19 +68,23 @@ func (r *parser) popState() {
 	r.state = r.state[0 : l-1]
 }
 
+func (r *parser) expected(msg string) error {
+	if r.token != nil {
+		wrapped := fmt.Sprintf(ErrExpectedWrapper, msg, r.token.Type())
+		return r.error(wrapped)
+	}
+	return r.error(msg)
+}
+
+func (r *parser) error(msg string) error {
+	return r.wrapError(errors.New(msg))
+}
+
 func (r *parser) wrapError(err error) error {
 	if t := r.token; t != nil {
 		return t.WrapError(err)
 	}
 	return err
-}
-
-func (r *parser) errorf(msg string, args ...interface{}) error {
-	return r.error(fmt.Sprintf(msg, args...))
-}
-
-func (r *parser) error(msg string) error {
-	return r.wrapError(errors.New(msg))
 }
 
 func isReserved(t *lexer.Token, w string) bool {
