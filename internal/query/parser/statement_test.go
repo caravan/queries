@@ -53,6 +53,7 @@ func TestParsableStatements(t *testing.T) {
 	testStatementsParse(t, "select column as col_alias from table;")
 	testStatementsParse(t, "select column from table as tbl_alias;")
 	testStatementsParse(t, "select col1, col2 from table1, table2")
+	testStatementsParse(t, "select col from table where something;")
 }
 
 func TestParsableStatementsErrors(t *testing.T) {
@@ -74,6 +75,11 @@ func TestParsableStatementsErrors(t *testing.T) {
 	testStatementsError(t,
 		"select this from that as 99;",
 		fmt.Sprintf(parser.ErrExpectedAlias, lexer.Integer),
+	)
+
+	testStatementsError(t,
+		"select this from that where 99;",
+		parser.ErrExpectedExpression,
 	)
 }
 

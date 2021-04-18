@@ -31,10 +31,16 @@ func (r *parser) selectStatement() (*ast.SelectStatement, error) {
 		return nil, err
 	}
 
+	condition, err := r.optionalCondition()
+	if err != nil {
+		return nil, err
+	}
+
 	return &ast.SelectStatement{
 		Located:         t,
 		ColumnSelectors: columns,
 		SourceSelectors: sources,
+		SelectCondition: condition,
 	}, nil
 }
 
@@ -148,4 +154,21 @@ func (r *parser) selectorAlias() (string, error) {
 		r.popState()
 		return "", nil
 	}
+}
+
+func (r *parser) optionalCondition() (*ast.SelectCondition, error) {
+	r.pushState()
+	if !isReserved(r.nextToken(), reserved.WHERE) {
+		r.popState()
+		return nil, nil
+	}
+
+	e, err := r.Expression()
+	if err != nil {
+		return nil, err
+	}
+	return &ast.SelectCondition{
+		Located:    e,
+		Expression: e,
+	}, nil
 }

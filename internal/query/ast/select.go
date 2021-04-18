@@ -8,6 +8,7 @@ type (
 		lexer.Located
 		ColumnSelectors
 		SourceSelectors
+		*SelectCondition
 	}
 
 	// ColumnSelector represents a SQL column selector
@@ -22,6 +23,11 @@ type (
 		lexer.Located
 		Source string
 		Name   string
+	}
+
+	SelectCondition struct {
+		lexer.Located
+		Expression // will be a BooleanExpression
 	}
 
 	// ColumnSelectors is a set of ColumnSelector
