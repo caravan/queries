@@ -6,7 +6,7 @@ import (
 	"github.com/caravan/queries/internal/query/reserved"
 )
 
-// Error message
+// Error messages
 const (
 	ErrExpectedIdentifier = "expected identifier"
 )
