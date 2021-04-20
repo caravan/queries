@@ -9,6 +9,32 @@ type (
 		Expression()
 	}
 
+	BinaryExpression interface {
+		Expression
+		Left() Expression
+		Right() Expression
+	}
+
+	RelationalExpression interface {
+		BinaryExpression
+		BooleanExpression
+		Operator() RelationalOperator
+	}
+
+	BooleanExpression interface {
+		BooleanExpression()
+	}
+
+	UnaryExpression interface {
+		Expression
+		Operator() UnaryOperator
+	}
+
+	BooleanUnaryExpression interface {
+		UnaryExpression
+		BooleanExpression
+	}
+
 	// Identifier represents a SQL identifier
 	Identifier struct {
 		lexer.Located

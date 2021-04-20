@@ -13,5 +13,4 @@ func TestSelectStatement(t *testing.T) {
 	st := ast.Statement(sel)
 	as.NotNil(st)
 	st.Statement()
-
 }
