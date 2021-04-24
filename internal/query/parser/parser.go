@@ -87,6 +87,25 @@ func (r *parser) wrapError(err error) error {
 	return err
 }
 
+func (r *parser) commaSeparated() bool {
+	r.pushState()
+	if r.nextToken().IsA(lexer.Comma) {
+		return true
+	}
+	r.popState()
+	return false
+}
+
+func (r *parser) reserved(word string) (*lexer.Token, bool) {
+	r.pushState()
+	t := r.nextToken()
+	if isReserved(t, word) {
+		return t, true
+	}
+	r.popState()
+	return nil, false
+}
+
 func isReserved(t *lexer.Token, w string) bool {
 	if t == nil || !t.IsA(lexer.Reserved) {
 		return false

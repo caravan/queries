@@ -2,7 +2,6 @@ package parser
 
 import (
 	"github.com/caravan/queries/internal/query/ast"
-	"github.com/caravan/queries/internal/query/lexer"
 	"github.com/caravan/queries/internal/query/reserved"
 )
 
@@ -147,23 +146,4 @@ func (r *parser) optionalCondition() (*ast.SelectCondition, error) {
 		Located:    e,
 		Expression: e,
 	}, nil
-}
-
-func (r *parser) reserved(word string) (*lexer.Token, bool) {
-	r.pushState()
-	t := r.nextToken()
-	if isReserved(t, word) {
-		return t, true
-	}
-	r.popState()
-	return nil, false
-}
-
-func (r *parser) commaSeparated() bool {
-	r.pushState()
-	if r.nextToken().IsA(lexer.Comma) {
-		return true
-	}
-	r.popState()
-	return false
 }
