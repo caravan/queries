@@ -1,7 +1,12 @@
-github.com/caravan/essentials v0.0.0-20210417065820-acebf27e96ec h1:8k82YwU5XlkoMlg0n3qopj2Csv0xa9zEUfLmSW2/BSk=
 github.com/caravan/essentials v0.0.0-20210417065820-acebf27e96ec/go.mod h1:hhteaUNnHglavc/vjxe0LLZtCFQeFoHSwZGTmLz3DWo=
-github.com/caravan/streaming v0.0.0-20210417072801-b3ac8ea9a777 h1:UG//QZtgaaaojxoHT4tKs4QL584Pz3FriFaaZ2cViSw=
-github.com/caravan/streaming v0.0.0-20210417072801-b3ac8ea9a777/go.mod h1:TwDaLT4RdwaF1OI6GpBrCE6VilSkMx3uTB5LxTVk03Y=
+github.com/caravan/essentials v0.0.0-20210424124727-2f41c5a8abe4 h1:e2WBKW7C9vuEk17qJHmnZWh2e1R/TyP23ePSV3l44LI=
+github.com/caravan/essentials v0.0.0-20210424124727-2f41c5a8abe4/go.mod h1:hhteaUNnHglavc/vjxe0LLZtCFQeFoHSwZGTmLz3DWo=
+github.com/caravan/kombi v0.0.0-20210430092848-9458171dcf23 h1:98WmGxT0duhQYnaO1URKykf5/o43nRzcrku8uJa9RT8=
+github.com/caravan/kombi v0.0.0-20210430092848-9458171dcf23/go.mod h1:lhnVh1iRiivSV2rRI5Dp+nhxx2n5RSCms3tDzH71Dso=
+github.com/caravan/kombi v0.0.0-20210501062727-3c3db2fdc948 h1:es57sC6S8EB3ZT1M/TiSusU1ksn66t/gLH1kSuoXAL4=
+github.com/caravan/kombi v0.0.0-20210501062727-3c3db2fdc948/go.mod h1:lhnVh1iRiivSV2rRI5Dp+nhxx2n5RSCms3tDzH71Dso=
+github.com/caravan/streaming v0.0.0-20210424124910-448ab0478534 h1:xgfjii0MH/CbkD4JXa79JbD/kyTwuAEXeoD9KnOVbPE=
+github.com/caravan/streaming v0.0.0-20210424124910-448ab0478534/go.mod h1:TwDaLT4RdwaF1OI6GpBrCE6VilSkMx3uTB5LxTVk03Y=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/uuid v1.2.0 h1:qJYtXnJRWmpe7m/3XlyhrsLrEURqHRM2kxzoxXqyUDs=
