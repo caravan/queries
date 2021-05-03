@@ -1,4 +1,4 @@
-package internal
+package literal
 
 import (
 	"fmt"
@@ -12,9 +12,9 @@ const (
 	ErrValueNotTerminated = "value has no closing quote"
 )
 
-// QuotedParser returns a new Parser that is able to parse a quoted String
+// quotedParser returns a new Parser that is able to parse a quoted String
 // or Identifier using the provided quotation mark
-func QuotedParser(q string) parse.Parser {
+func quotedParser(q string) parse.Parser {
 	return parse.
 		String(q).
 		Then(parse.

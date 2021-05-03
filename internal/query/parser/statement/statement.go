@@ -29,7 +29,7 @@ var (
 		SelectStatement,
 		NonStatement,
 	).Bind(func(r parse.Result) parse.Parser {
-		return EOF.Or(literal.Semicolon).Return(r)
+		return EOS.Return(r)
 	})
 
 	NonStatement = parse.Satisfy(
@@ -39,4 +39,5 @@ var (
 	).Fail(ErrStatementExpected)
 
 	EOF = literal.WS(parse.EOF)
+	EOS = literal.Semicolon.OneOrMore().Or(EOF)
 )
