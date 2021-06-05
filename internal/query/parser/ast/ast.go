@@ -1,4 +1,10 @@
 package ast
 
-// Name represents an identifier name
-type Name string
+type (
+	// Name represents an identifier name
+	Name string
+
+	// Node is any AST node
+	Node interface {
+	}
+)

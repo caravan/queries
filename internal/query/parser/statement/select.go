@@ -12,9 +12,7 @@ var (
 	condMet    = &struct{}{}
 	condNotMet = &struct{}{}
 
-	Alias       = literal.AS.Then(literal.Identifier).Or(literal.Identifier)
-	FromClause  = RequireIf(literal.FROM, SourceSelectors)
-	WhereClause = RequireIf(literal.WHERE, WhereSelector)
+	Alias = literal.AS.Then(literal.Identifier).Or(literal.Identifier)
 
 	SelectStatement = parse.Parser(
 		func(i parse.Input) (*parse.Success, *parse.Failure) {
@@ -68,7 +66,9 @@ var (
 		},
 	)
 
-	SourceSelectors = SourceSelector.Delimited(literal.Comma).Combine(
+	FromClause = RequireIf(literal.FROM, FromSelectors)
+
+	FromSelectors = FromSelector.Delimited(literal.Comma).Combine(
 		func(in ...parse.Result) parse.Result {
 			out := make(ast.SourceSelectors, len(in))
 			for i, s := range in {
@@ -78,7 +78,7 @@ var (
 		},
 	)
 
-	SourceSelector = parse.Parser(
+	FromSelector = parse.Parser(
 		func(i parse.Input) (*parse.Success, *parse.Failure) {
 			res := &ast.SourceSelector{}
 			src := literal.Identifier.
@@ -94,6 +94,8 @@ var (
 			return src(i)
 		},
 	)
+
+	WhereClause = RequireIf(literal.WHERE, WhereSelector)
 
 	WhereSelector = literal.Identifier.Map(func(r parse.Result) parse.Result {
 		return &ast.SelectCondition{
