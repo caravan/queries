@@ -12,8 +12,8 @@ const (
 	ErrValueNotTerminated = "value has no closing quote"
 )
 
-// quotedParser returns a new Parser that is able to parse a quoted String
-// or Identifier using the provided quotation mark
+// quotedParser returns a new Parser that is able to parse a quoted String or
+// Identifier using the provided quotation mark
 func quotedParser(q string) parse.Parser {
 	return parse.
 		String(q).

@@ -10,8 +10,8 @@ const (
 	ErrExpectedExpression = "expected expression"
 )
 
-// Expression parses an expression to be used in column projection
-// or filtering conditions
+// Expression parses an expression to be used in column projection or filtering
+// conditions
 var Expression = parse.Any(
 	literal.Identifier,
 )
