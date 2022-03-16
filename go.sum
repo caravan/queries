@@ -1,8 +1,6 @@
 github.com/caravan/essentials v0.0.0-20210417065820-acebf27e96ec/go.mod h1:hhteaUNnHglavc/vjxe0LLZtCFQeFoHSwZGTmLz3DWo=
 github.com/caravan/essentials v0.0.0-20210424124727-2f41c5a8abe4 h1:e2WBKW7C9vuEk17qJHmnZWh2e1R/TyP23ePSV3l44LI=
 github.com/caravan/essentials v0.0.0-20210424124727-2f41c5a8abe4/go.mod h1:hhteaUNnHglavc/vjxe0LLZtCFQeFoHSwZGTmLz3DWo=
-github.com/caravan/kombi v0.0.0-20210430092848-9458171dcf23 h1:98WmGxT0duhQYnaO1URKykf5/o43nRzcrku8uJa9RT8=
-github.com/caravan/kombi v0.0.0-20210430092848-9458171dcf23/go.mod h1:lhnVh1iRiivSV2rRI5Dp+nhxx2n5RSCms3tDzH71Dso=
 github.com/caravan/kombi v0.0.0-20210501062727-3c3db2fdc948 h1:es57sC6S8EB3ZT1M/TiSusU1ksn66t/gLH1kSuoXAL4=
 github.com/caravan/kombi v0.0.0-20210501062727-3c3db2fdc948/go.mod h1:lhnVh1iRiivSV2rRI5Dp+nhxx2n5RSCms3tDzH71Dso=
 github.com/caravan/streaming v0.0.0-20210424124910-448ab0478534 h1:xgfjii0MH/CbkD4JXa79JbD/kyTwuAEXeoD9KnOVbPE=
@@ -14,8 +12,9 @@ github.com/google/uuid v1.2.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
-github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+github.com/stretchr/testify v1.7.1 h1:5TQK59W5E3v0r2duFAb7P95B6hEeOyEnHRa8MjYSMTY=
+github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c h1:dUUwHk2QECo/6vqA44rthZ8ie2QXMNeKRTHCNY2nXvo=
